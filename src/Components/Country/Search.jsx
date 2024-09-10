@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 
-function Search({ renderComponent, setSearchName }) {
+function Search({setSearchName }) {
     const [name, setName] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault(); // Correctly prevent the default form submission
-        setSearchName(name);
-       
-        
+        setSearchName(name) 
     };
-
-    if (renderComponent) {
         return (
             <form onSubmit={handleSubmit} className="relative">
                 <input 
@@ -29,7 +25,7 @@ function Search({ renderComponent, setSearchName }) {
                 </button>
             </form>
         );
-    }
+    
 
     return null;
 }
