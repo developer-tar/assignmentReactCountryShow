@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Spinner from "./Spinner";
 import ErrorNotification from "./ErrorNotification";
+import useCountryDetails from "../../contexts/useCountryDetails";
 
-function List({ setIsListComponentRendered, searchname, setCardData,setShowCardComponent }) {
+function List({ setIsListComponentRendered, searchname, setCardData,setShowCardComponent,setShowMoreDetailsData }) {
 
   const [country, setCountry] = useState([]);
   const [visibleCount, setVisibleCount] = useState(50); // Show 50 items initially
@@ -11,15 +12,19 @@ function List({ setIsListComponentRendered, searchname, setCardData,setShowCardC
 
   const handleCardClick = (details) => {
 
-    setCardData({
-      country: details?.name?.common,
-      population: details?.population,
-      flag: details?.flags?.png,
-      capital:details?.capital[0],
-      region:details?.region,
-      subregion:details?.subregion || "No subregion",
-      languages:details?.languages?.eng,
-    });
+      setCardData({
+        country: details?.name?.common,
+        population: details?.population,
+        flag: details?.flags?.png
+      });
+      setShowMoreDetailsData({
+        capital:details?.capital[0],
+        region:details?.region,
+        subregion:details?.subregion || "No subregion",
+        languages:details?.languages?.eng,
+      });
+    
+    
     setShowCardComponent(true);
   };//send the details to card
 
